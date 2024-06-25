@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of TV Brands</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <a href="index.html">TV Zone</a>
+         </h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tv.html">TVs</a></li>
+                <li><a href="tvbrands.html">TV Brands</a></li>
+                <li><a href="report.html">Report</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>List of TV Brands</h1>
+        <ul id="tvBrandsList">
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 TVZone. All Rights reserved</p>
+    </footer>
+    <script>
+        window.onload = function() {
+            let tvBrands = [
+                {
+                    name: "Tech Vision(United States)",
+                    foundedYear: 2005,
+                    headquarters: "San Francisco, California",
+                    popularModels: ["Smart LED TV", "Ultra HD OLED TV", "Curved QLED TV"]
+                },
+                {
+                    name: "Vision X(South Korea)",
+                    foundedYear: 2000,
+                    headquarters: "Seoul",
+                    popularModels: ["Curved OLED TV", "4K Smart TV", "UltraSlim LED TV"]
+                },
+                {
+                    name: "ColorTech(Japan)",
+                    foundedYear: 1995,
+                    headquarters: "Beijing",
+                    popularModels: ["Android Smart TV", "Budget Friendly LED TV", "8K Quantum Dot TV"]
+                }
+            ];
+
+            let tvBrandsList = document.getElementById('tvBrandsList');
+
+            tvBrands.forEach(brand => {
+                let li = document.createElement('li');
+                li.innerHTML = `<strong>${brand.name}</strong>
+                                <p><strong>Founded Year:</strong> ${brand.foundedYear}</p>
+                                <p><strong>Headquarters:</strong> ${brand.headquarters}</p>
+                                <p><strong>Popular Models:</strong> ${brand.popularModels.join(', ')}</p>`;
+                tvBrandsList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

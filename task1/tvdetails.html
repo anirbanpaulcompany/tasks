@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Details</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <a href="index.html">TV Zone</a>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tv.html">TVs</a></li>
+                <li><a href="tvbrands.html">TV Brands</a></li>
+                <li><a href="report.html">Report</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>TV Details</h1>
+        <section id="televisionDetail">
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 TVZone. All Rights reserved</p>
+    </footer>
+    <script>
+        window.onload = function() {
+            let televisions = [
+                {
+                    id: "1",
+                    name: "Smart LED TV",
+                    model: "LED123",
+                    detail: "A feature-rich Smart LED TV with high-definition display.",
+                    manufacturer: "TechVision",
+                    year: 2022,
+                    screenType: "LED",
+                    size: 55,
+                    resolution: "4K",
+                    price: 80000,
+                },
+                {
+                    id: "2",
+                    name: "Curved OLED TV",
+                    model: "OLED456",
+                    detail: "Immersive entertainment with a curved OLED display.",
+                    manufacturer: "VisionX",
+                    year: 2023,
+                    screenType: "OLED",
+                    size: 65,
+                    resolution: "8K",
+                    price: 120000,
+                },
+                {
+                    id: "3",
+                    name: "Ultra HD QLED TV",
+                    model: "QLED789",
+                    detail: "QLED technology for vibrant colors and superior clarity.",
+                    manufacturer: "ColorTech",
+                    year: 2021,
+                    screenType: "QLED",
+                    size: 75,
+                    resolution: "4K",
+                    price: 150000,
+                }
+            ];
+
+            function getParameterById(id) {
+                let urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(id);
+            }
+
+            let tvId = getParameterById('id');
+            let television = televisions.find(tv => tv.id === tvId);
+
+            let televisionDetail = document.getElementById('televisionDetail');
+            if (television) {
+                televisionDetail.innerHTML = `
+                    <h2>${television.name}</h2>
+                    <ul>
+                        <li><strong>Model:</strong> ${television.model}</li>
+                        <li><strong>Detail:</strong> ${television.detail}</li>
+                        <li><strong>Manufacturer:</strong> ${television.manufacturer}</li>
+                        <li><strong>Screen Type:</strong> ${television.screenType}</li>
+                        <li><strong>Resolution:</strong> ${television.resolution}</li>
+                        <li><strong>Year:</strong> ${television.year}</li>
+                        <li><strong>Price:</strong> $${television.price}</li>
+                    </ul>
+                `;
+            } else {
+                televisionDetail.innerHTML = '<p>TV details not found.</p>';
+            }
+        }
+    </script>
+</body>
+</html>

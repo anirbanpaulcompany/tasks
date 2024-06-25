@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Zone</title>
+</head>
+<body>
+    <header>
+        <a href="#" onclick="loadPage('home')">TV Zone</a>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="loadPage('home')">Home</a></li>
+                <li><a href="#" onclick="loadPage('tv')">TVs</a></li>
+                <li><a href="#" onclick="loadPage('tvbrands')">TV Brands</a></li>
+                <li><a href="#" onclick="loadPage('report')">Report</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="mainContent">
+    </main>
+    <footer>
+        <p>&copy; 2024 TVZone. All Rights reserved</p>
+    </footer>
+    <script>
+        function loadPage(page) {
+            const mainContent = document.getElementById('mainContent');
+            
+            if (page === 'home') {
+                mainContent.innerHTML = `
+                    <img src="https://placehold.co/600x400?text=TV+Banner" alt="TV Banner">
+                    <section>
+                        <h2>TVs</h2>
+                        <p>Discover, explore, and enjoy a world-class selection of televisions.</p>
+                        <a href="#" onclick="loadPage('tv')">Explore Televisions</a>
+                    </section>
+                    <section>
+                        <h2>Television Brands</h2>
+                        <p>Explore a variety of television brands known for quality and innovation.</p>
+                        <a href="#" onclick="loadPage('tvbrands')">Explore Brands</a>
+                    </section>
+                    <section>
+                        <h2>TV Report</h2>
+                        <p>Get insights into our latest television report.</p>
+                        <a href="#" onclick="loadPage('report')">View Report</a>
+                    </section>
+                `;
+            } else if (page === 'tv') {
+                mainContent.innerHTML = `
+                    <h1>List of Televisions</h1>
+                    <ul>
+                        <li><strong>Smart LED TV (Model: LED123)</strong></li>
+                        <p><strong>Year:</strong> 2022 (<a href="#" onclick="loadDetails('1')">See More Details</a>)</p>
+                        <li><strong>Curved OLED TV (Model: OLED456)</strong></li>
+                        <p><strong>Year:</strong> 2023 (<a href="#" onclick="loadDetails('2')">See More Details</a>)</p>
+                        <li><strong>Ultra HD QLED TV (Model: QLED789)</strong></li>
+                        <p><strong>Year:</strong> 2021 (<a href="#" onclick="loadDetails('3')">See More Details</a>)</p>
+                    </ul>
+                `;
+            } else if (page === 'tvbrands') {
+                mainContent.innerHTML = `
+                    <h1>List of TV Brands</h1>
+                    <ul>
+                        <li><strong>Tech Vision (United States)</strong></li>
+                        <p><strong>Founded Year:</strong> 2005</p>
+                        <p><strong>Headquarters:</strong> San Francisco, California</p>
+                        <p><strong>Popular Models:</strong> Smart LED TV, Ultra HD OLED TV, Curved QLED TV</p>
+                        <li><strong>Vision X (South Korea)</strong></li>
+                        <p><strong>Founded Year:</strong> 2000</p>
+                        <p><strong>Headquarters:</strong> Seoul</p>
+                        <p><strong>Popular Models:</strong> Curved OLED TV, 4K Smart TV, UltraSlim LED TV</p>
+                        <li><strong>ColorTech (Japan)</strong></li>
+                        <p><strong>Founded Year:</strong> 1995</p>
+                        <p><strong>Headquarters:</strong> Beijing</p>
+                        <p><strong>Popular Models:</strong> Android Smart TV, Budget Friendly LED TV, 8K Quantum Dot TV</p>
+                    </ul>
+                `;
+            } else if (page === 'report') {
+                mainContent.innerHTML = `
+                    <h1>TV Report</h1>
+                    <section>
+                        <h2>Top-Rated TV</h2>
+                        <p>Model: Curved OLED TV</p>
+                        <p>Rating: 9.5</p>
+                        <p>Manufacturer: VisionX</p>
+                    </section>
+                    <section>
+                        <h2>Most Popular Model</h2>
+                        <p>Model: Smart LED TV</p>
+                        <p>Total TVs: 3</p>
+                    </section>
+                `;
+            }
+        }
+
+        function loadDetails(id) {
+            const mainContent = document.getElementById('mainContent');
+            const television = findTelevisionById(id); 
+            
+            if (television) {
+                mainContent.innerHTML = `
+                    <h1>${television.name}</h1>
+                    <ul>
+                        <li><strong>Model:</strong> ${television.model}</li>
+                        <li><strong>Detail:</strong> ${television.detail}</li>
+                        <li><strong>Manufacturer:</strong> ${television.manufacturer}</li>
+                        <li><strong>Screen Type:</strong> ${television.screenType}</li>
+                        <li><strong>Resolution:</strong> ${television.resolution}</li>
+                        <li><strong>Year:</strong> ${television.year}</li>
+                        <li><strong>Price:</strong> ${television.price}</li>
+                    </ul>
+                `;
+            } else {
+                mainContent.innerHTML = `<p>TV details not found.</p>`;
+            }
+        }
+
+        let televisions = [
+            {
+                id: "1",
+                name: "Smart LED TV",
+                model: "LED123",
+                detail: "A feature-rich Smart LED TV with high-definition display.",
+                manufacturer: "TechVision",
+                year: 2022,
+                screenType: "LED",
+                size: 55,
+                resolution: "4K",
+                price: 80000,
+            },
+            {
+                id: "2",
+                name: "Curved OLED TV",
+                model: "OLED456",
+                detail: "Immersive entertainment with a curved OLED display.",
+                manufacturer: "VisionX",
+                year: 2023,
+                screenType: "OLED",
+                size: 65,
+                resolution: "8K",
+                price: 120000,
+            },
+            {
+                id: "3",
+                name: "Ultra HD QLED TV",
+                model: "QLED789",
+                detail: "QLED technology for vibrant colors and superior clarity.",
+                manufacturer: "ColorTech",
+                year: 2021,
+                screenType: "QLED",
+                size: 75,
+                resolution: "4K",
+                price: 150000,
+            },
+        ];
+
+        function findTelevisionById(id) {
+            return televisions.find(tv => tv.id === id);
+        }
+
+        loadPage('home');
+    </script>
+</body>
+</html>
